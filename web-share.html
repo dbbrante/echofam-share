@@ -215,48 +215,50 @@
 
       if (appState.view === 'login') {
         content = `
-          <div class="min-h-screen flex items-center justify-center px-4">
-            <div class="glass-effect rounded-3xl p-8 w-full max-w-sm fade-in">
-              <div class="text-center mb-8">
-                <h1 class="text-5xl font-bold mb-2">EchoDay</h1>
-                <p class="text-white/60 text-base">View a shared journal</p>
+          <div class="min-h-screen flex items-center justify-center px-4 py-8">
+            <div class="w-full max-w-sm fade-in">
+              <div class="glass-effect rounded-3xl p-8">
+                <div class="text-center mb-8">
+                  <h1 class="text-5xl font-bold mb-3">EchoDay</h1>
+                  <p class="text-white/60">Shared Journal</p>
+                </div>
+
+                <div class="space-y-5 mb-7">
+                  <div>
+                    <label class="block text-white/80 text-sm font-medium mb-2">Password</label>
+                    <input
+                      type="password"
+                      id="passwordInput"
+                      placeholder="Enter password"
+                      class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 focus:bg-white/15 transition"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-white/80 text-sm font-medium mb-2">Your name</label>
+                    <input
+                      type="text"
+                      id="nameInput"
+                      placeholder="Enter your name"
+                      value="Guest"
+                      class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 focus:bg-white/15 transition"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  onclick="handleLogin()"
+                  class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition active:scale-95 mb-3"
+                >
+                  View Journal
+                </button>
+
+                ${appState.error ? `
+                  <div class="bg-red-500/20 border border-red-500/40 rounded-xl p-3 text-center">
+                    <p class="text-red-200 text-sm">${appState.error}</p>
+                  </div>
+                ` : ''}
               </div>
-
-              <div class="space-y-4 mb-6">
-                <div>
-                  <label class="block text-sm text-white/70 mb-3 font-medium">Password</label>
-                  <input
-                    type="password"
-                    id="passwordInput"
-                    placeholder="Enter password"
-                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 transition"
-                  />
-                </div>
-
-                <div>
-                  <label class="block text-sm text-white/70 mb-3 font-medium">Your name (for comments)</label>
-                  <input
-                    type="text"
-                    id="nameInput"
-                    placeholder="Enter your name"
-                    value="Guest"
-                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 transition"
-                  />
-                </div>
-              </div>
-
-              <button
-                onclick="handleLogin()"
-                class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition active:scale-95"
-              >
-                View Journal
-              </button>
-
-              ${appState.error ? `
-                <div class="mt-4 bg-red-500/20 border border-red-500/30 rounded-xl p-3">
-                  <p class="text-red-200 text-sm">${appState.error}</p>
-                </div>
-              ` : ''}
             </div>
           </div>
         `;
@@ -277,17 +279,16 @@
       } else if (appState.view === 'error') {
         content = `
           <div class="min-h-screen flex items-center justify-center px-4">
-            <div class="glass-effect rounded-3xl p-8 w-full max-w-sm fade-in">
+            <div class="w-full max-w-sm glass-effect rounded-3xl p-8 fade-in">
               <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4v2m0-10a8 8 0 110 16 8 8 0 010-16z"></path>
                   </svg>
                 </div>
-                <h2 class="text-2xl font-bold mb-2">Error</h2>
-                <p class="text-white/60">${appState.error}</p>
+                <h2 class="text-xl font-bold mb-2">Error</h2>
+                <p class="text-white/60 text-sm">${appState.error}</p>
               </div>
-
               <button
                 onclick="setState({ view: 'login', error: null })"
                 class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition"
@@ -308,13 +309,11 @@
 
             return `
               <div class="entry-card fade-in">
-                <div class="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 class="text-white font-semibold text-base mb-1">
-                      ${dateStr} ${entry.mood_emoji ? entry.mood_emoji : ''}
-                    </h3>
-                    <p class="text-white/50 text-sm">${timeStr}</p>
-                  </div>
+                <div class="mb-4">
+                  <h3 class="text-white font-semibold text-base mb-1">
+                    ${dateStr} ${entry.mood_emoji ? entry.mood_emoji : ''}
+                  </h3>
+                  <p class="text-white/50 text-sm">${timeStr}</p>
                 </div>
 
                 ${entry.summary ? `<p class="text-white/90 text-sm mb-2">${entry.summary}</p>` : ''}
@@ -360,7 +359,7 @@
 
               ${entriesHTML}
 
-              <div class="mt-8">
+              <div class="mt-8 mb-4">
                 <button
                   onclick="setState({ view: 'login', token: null, password: null, error: null })"
                   class="w-full glass-effect text-white font-semibold py-3 rounded-xl hover:bg-white/15 transition active:scale-95"
@@ -444,23 +443,20 @@
       }
     }
 
+    // Get token/password from URL params but DON'T auto-load
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
 
     if (!token) {
       appState.view = 'error';
       appState.error = 'No journal link provided. Please ask for a shared link.';
-      render();
     } else {
       appState.token = token;
       appState.password = params.get('password') || '';
-      
-      if (appState.password) {
-        fetchSharedLog();
-      } else {
-        render();
-      }
+      // Don't auto-load - user needs to enter name and click button
     }
+
+    render();
   </script>
 </body>
 </html>
