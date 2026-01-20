@@ -1,244 +1,146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #9ba2b1; -webkit-text-stroke: #9ba2b1}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #d65562; -webkit-text-stroke: #d65562}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #88b966; -webkit-text-stroke: #88b966}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #c58853; -webkit-text-stroke: #c58853}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #519deb; -webkit-text-stroke: #519deb}
-    span.s1 {font-kerning: none}
-    span.s2 {font-kerning: none; color: #d65562; -webkit-text-stroke: 0px #d65562}
-    span.s3 {font-kerning: none; color: #c58853; -webkit-text-stroke: 0px #c58853}
-    span.s4 {font-kerning: none; color: #88b966; -webkit-text-stroke: 0px #88b966}
-    span.s5 {font-kerning: none; color: #9ba2b1; -webkit-text-stroke: 0px #9ba2b1}
-    span.s6 {font-kerning: none; color: #519deb; -webkit-text-stroke: 0px #519deb}
-    span.s7 {font-kerning: none; color: #b85dd5; -webkit-text-stroke: 0px #b85dd5}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EchoDay - Shared Journal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;</span><span class="s2">html </span><span class="s3">lang</span><span class="s1">="</span><span class="s4">en</span><span class="s1">"&gt;</span></p>
-<p class="p2"><span class="s5">&lt;</span><span class="s1">head</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;</span><span class="s2">meta </span><span class="s3">charset</span><span class="s1">="</span><span class="s4">UTF-8</span><span class="s1">"</span><span class="s2"> </span><span class="s1">/&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span>&lt;</span><span class="s2">meta </span><span class="s3">name</span><span class="s5">="</span><span class="s1">viewport</span><span class="s5">"</span><span class="s2"> </span><span class="s3">content</span><span class="s5">="</span><span class="s1">width=device-width, initial-scale=1.0</span><span class="s5">"</span><span class="s2"> </span><span class="s5">/&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;</span><span class="s2">title</span><span class="s1">&gt;EchoDay - Shared Journal&lt;/</span><span class="s2">title</span><span class="s1">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span>&lt;</span><span class="s2">script </span><span class="s3">src</span><span class="s5">="</span><span class="s1">https://cdn.tailwindcss.com</span><span class="s5">"&gt;&lt;/</span><span class="s2">script</span><span class="s5">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span>&lt;</span><span class="s1">style</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s4">*</span><span class="s1"> {</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">-webkit-font-smoothing</span><span class="s5">: antialiased;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">-moz-osx-font-smoothing</span><span class="s5">: grayscale;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s4">body</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">background</span><span class="s1">: </span><span class="s6">linear-gradient</span><span class="s1">(</span><span class="s3">135</span><span class="s1">deg, #1a1a2e </span><span class="s3">0</span><span class="s1">%, #16213e </span><span class="s3">50</span><span class="s1">%, #0f0f23 </span><span class="s3">100</span><span class="s1">%);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">color</span><span class="s1">: #fff;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">font-family</span><span class="s1">: -apple-system, BlinkMacSystemFont, </span><span class="s4">'Segoe UI'</span><span class="s1">, Roboto, sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">.glass-effect</span><span class="s5"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">background</span><span class="s1">: </span><span class="s6">rgba</span><span class="s1">(</span><span class="s3">255</span><span class="s1">, </span><span class="s3">255</span><span class="s1">, </span><span class="s3">255</span><span class="s1">, </span><span class="s3">0.1</span><span class="s1">);</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">backdrop-filter</span><span class="s5">: </span><span class="s6">blur</span><span class="s5">(</span><span class="s3">10</span><span class="s5">px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">border</span><span class="s1">: </span><span class="s3">1</span><span class="s1">px solid </span><span class="s6">rgba</span><span class="s1">(</span><span class="s3">255</span><span class="s1">, </span><span class="s3">255</span><span class="s1">, </span><span class="s3">255</span><span class="s1">, </span><span class="s3">0.2</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">.fade-in</span><span class="s5"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">animation</span><span class="s1">: fadeIn </span><span class="s3">0.3</span><span class="s1">s ease-in;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">@keyframes fadeIn</span><span class="s5"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s4">from</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">opacity</span><span class="s1">: </span><span class="s3">0</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">transform</span><span class="s1">: </span><span class="s6">translateY</span><span class="s1">(</span><span class="s3">10</span><span class="s1">px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s4">to</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">opacity</span><span class="s1">: </span><span class="s3">1</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">transform</span><span class="s1">: </span><span class="s6">translateY</span><span class="s1">(</span><span class="s3">0</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">.entry-card</span><span class="s5"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">transition</span><span class="s1">: all </span><span class="s3">0.2</span><span class="s1">s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">.entry-card:hover</span><span class="s5"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">transform</span><span class="s1">: </span><span class="s6">translateY</span><span class="s1">(</span><span class="s3">-2</span><span class="s1">px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">box-shadow</span><span class="s1">: </span><span class="s3">0</span><span class="s1"> </span><span class="s3">8</span><span class="s1">px </span><span class="s3">24</span><span class="s1">px </span><span class="s6">rgba</span><span class="s1">(</span><span class="s3">251</span><span class="s1">, </span><span class="s3">191</span><span class="s1">, </span><span class="s3">36</span><span class="s1">, </span><span class="s3">0.1</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/</span><span class="s2">style</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s5">&lt;/</span><span class="s1">head</span><span class="s5">&gt;</span></p>
-<p class="p2"><span class="s5">&lt;</span><span class="s1">body</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;</span><span class="s2">div </span><span class="s3">id</span><span class="s1">="</span><span class="s4">app</span><span class="s1">"&gt;&lt;/</span><span class="s2">div</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span>&lt;</span><span class="s1">script</span><span class="s5">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s7">const</span><span class="s5"> </span><span class="s3">SUPABASE_URL</span><span class="s5"> </span><span class="s6">=</span><span class="s5"> </span><span class="s1">'https://xbjdemockbrdykexkjwu.supabase.co'</span><span class="s5">;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s7">const</span><span class="s5"> </span><span class="s3">SUPABASE_ANON_KEY</span><span class="s5"> </span><span class="s6">=</span><span class="s5"> </span><span class="s1">'sb_publishable_axDBEvt-u1td7dCrP-4V-g_oHtfVtrb'</span><span class="s5">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s7">let</span><span class="s1"> appState </span><span class="s6">=</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">view</span><span class="s6">:</span><span class="s1"> </span><span class="s4">'login'</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">token</span><span class="s6">:</span><span class="s1"> </span><span class="s7">null</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">password</span><span class="s6">:</span><span class="s1"> </span><span class="s7">null</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">log</span><span class="s6">:</span><span class="s1"> </span><span class="s7">null</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">entries</span><span class="s6">:</span><span class="s1"> [],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">comments</span><span class="s6">:</span><span class="s1"> {},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">error</span><span class="s6">:</span><span class="s1"> </span><span class="s7">null</span><span class="s1">,</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">newCommentText</span><span class="s6">:</span><span class="s5"> {},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s2">userName</span><span class="s6">:</span><span class="s1"> </span><span class="s4">'Guest'</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>};</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s7">const</span><span class="s5"> app </span><span class="s1">=</span><span class="s5"> </span><span class="s1">document</span><span class="s5">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'app'</span><span class="s5">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s7">function</span><span class="s1"> </span><span class="s6">setState</span><span class="s1">(newState) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>appState </span><span class="s6">=</span><span class="s1"> { </span><span class="s6">...</span><span class="s1">appState, </span><span class="s6">...</span><span class="s1">newState };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">render</span><span class="s1">();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s7">async</span><span class="s5"> </span><span class="s7">function</span><span class="s5"> </span><span class="s1">fetchSharedLog</span><span class="s5">() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">if</span><span class="s1"> (</span><span class="s6">!</span><span class="s1">appState.token </span><span class="s6">||</span><span class="s1"> </span><span class="s6">!</span><span class="s1">appState.password) </span><span class="s7">return</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">setState</span><span class="s1">({ </span><span class="s2">view</span><span class="s6">:</span><span class="s1"> </span><span class="s4">'loading'</span><span class="s1"> });</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">try</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> response </span><span class="s6">=</span><span class="s1"> </span><span class="s7">await</span><span class="s1"> </span><span class="s6">fetch</span><span class="s1">(`${SUPABASE_URL}</span><span class="s4">/rest/v1/shared_logs?token=eq.</span><span class="s1">${appState.token}</span><span class="s4">&amp;select=*</span><span class="s1">`, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">headers</span><span class="s6">:</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">'apikey'</span><span class="s6">:</span><span class="s5"> </span><span class="s1">SUPABASE_ANON_KEY</span><span class="s5">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">'Authorization'</span><span class="s6">:</span><span class="s1"> `</span><span class="s4">Bearer </span><span class="s1">${SUPABASE_ANON_KEY}`,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">if</span><span class="s1"> (</span><span class="s6">!</span><span class="s1">response.ok) </span><span class="s7">throw</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s3">Error</span><span class="s1">(</span><span class="s4">'Log not found'</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> data </span><span class="s6">=</span><span class="s1"> </span><span class="s7">await</span><span class="s1"> response.</span><span class="s6">json</span><span class="s1">();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">if</span><span class="s1"> (</span><span class="s6">!</span><span class="s1">data.length) </span><span class="s7">throw</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s3">Error</span><span class="s1">(</span><span class="s4">'Log not found'</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> log </span><span class="s6">=</span><span class="s1"> data[</span><span class="s3">0</span><span class="s1">];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">if</span><span class="s1"> (log.password </span><span class="s6">!==</span><span class="s1"> appState.password) </span><span class="s7">throw</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s3">Error</span><span class="s1">(</span><span class="s4">'Invalid password'</span><span class="s1">);</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s5"> entriesRes </span><span class="s6">=</span><span class="s5"> </span><span class="s7">await</span><span class="s5"> </span><span class="s6">fetch</span><span class="s5">(`${SUPABASE_URL}</span><span class="s1">/rest/v1/shared_log_entries?shared_log_id=eq.</span><span class="s5">${log.id}</span><span class="s1">&amp;select=entry_id,added_at</span><span class="s5">`, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">headers</span><span class="s6">:</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">'apikey'</span><span class="s6">:</span><span class="s5"> </span><span class="s1">SUPABASE_ANON_KEY</span><span class="s5">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">'Authorization'</span><span class="s6">:</span><span class="s1"> `</span><span class="s4">Bearer </span><span class="s1">${SUPABASE_ANON_KEY}`,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> entries </span><span class="s6">=</span><span class="s1"> </span><span class="s7">await</span><span class="s1"> entriesRes.</span><span class="s6">json</span><span class="s1">();</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s5"> commentsRes </span><span class="s6">=</span><span class="s5"> </span><span class="s7">await</span><span class="s5"> </span><span class="s6">fetch</span><span class="s5">(`${SUPABASE_URL}</span><span class="s1">/rest/v1/shared_log_comments?shared_log_id=eq.</span><span class="s5">${log.id}</span><span class="s1">&amp;select=*</span><span class="s5">`, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">headers</span><span class="s6">:</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">'apikey'</span><span class="s6">:</span><span class="s5"> </span><span class="s1">SUPABASE_ANON_KEY</span><span class="s5">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">'Authorization'</span><span class="s6">:</span><span class="s1"> `</span><span class="s4">Bearer </span><span class="s1">${SUPABASE_ANON_KEY}`,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> comments </span><span class="s6">=</span><span class="s1"> </span><span class="s7">await</span><span class="s1"> commentsRes.</span><span class="s6">json</span><span class="s1">();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> commentsByEntry </span><span class="s6">=</span><span class="s1"> {};</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>comments.</span><span class="s6">forEach</span><span class="s1">((c) </span><span class="s6">=&gt;</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">if</span><span class="s1"> (</span><span class="s6">!</span><span class="s1">commentsByEntry[c.entry_id]) commentsByEntry[c.entry_id] </span><span class="s6">=</span><span class="s1"> [];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>commentsByEntry[c.entry_id].</span><span class="s6">push</span><span class="s1">(c);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">setState</span><span class="s1">({</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">view</span><span class="s6">:</span><span class="s1"> </span><span class="s4">'entries'</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>log,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>entries,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">comments</span><span class="s6">:</span><span class="s1"> commentsByEntry,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s7">catch</span><span class="s1"> (error) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">setState</span><span class="s1">({ </span><span class="s2">view</span><span class="s6">:</span><span class="s1"> </span><span class="s4">'error'</span><span class="s1">, </span><span class="s2">error</span><span class="s6">:</span><span class="s1"> error.message });</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s7">async</span><span class="s1"> </span><span class="s7">function</span><span class="s1"> </span><span class="s6">addComment</span><span class="s1">(entryId) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s1"> text </span><span class="s6">=</span><span class="s1"> appState.newCommentText[entryId];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">if</span><span class="s1"> (</span><span class="s6">!</span><span class="s1">text </span><span class="s6">||</span><span class="s1"> </span><span class="s6">!</span><span class="s1">text.</span><span class="s6">trim</span><span class="s1">()) </span><span class="s7">return</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">try</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> response </span><span class="s6">=</span><span class="s1"> </span><span class="s7">await</span><span class="s1"> </span><span class="s6">fetch</span><span class="s1">(`${SUPABASE_URL}</span><span class="s4">/rest/v1/shared_log_comments</span><span class="s1">`, {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">method</span><span class="s6">:</span><span class="s1"> </span><span class="s4">'POST'</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">headers</span><span class="s6">:</span><span class="s1"> {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">'apikey'</span><span class="s6">:</span><span class="s5"> </span><span class="s1">SUPABASE_ANON_KEY</span><span class="s5">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">'Authorization'</span><span class="s6">:</span><span class="s1"> `</span><span class="s4">Bearer </span><span class="s1">${SUPABASE_ANON_KEY}`,</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">'Content-Type'</span><span class="s6">:</span><span class="s5"> </span><span class="s1">'application/json'</span><span class="s5">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s2">body</span><span class="s6">:</span><span class="s1"> </span><span class="s3">JSON</span><span class="s1">.</span><span class="s6">stringify</span><span class="s1">({</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">shared_log_id</span><span class="s6">:</span><span class="s1"> appState.log.id,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">entry_id</span><span class="s6">:</span><span class="s1"> entryId,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">name</span><span class="s6">:</span><span class="s1"> appState.userName,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">comment</span><span class="s6">:</span><span class="s1"> text.</span><span class="s6">trim</span><span class="s1">(),</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>}),</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">if</span><span class="s1"> (response.ok) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">const</span><span class="s1"> newComment </span><span class="s6">=</span><span class="s1"> </span><span class="s7">await</span><span class="s1"> response.</span><span class="s6">json</span><span class="s1">();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">const</span><span class="s1"> comments </span><span class="s6">=</span><span class="s1"> { </span><span class="s6">...</span><span class="s1">appState.comments };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">if</span><span class="s1"> (</span><span class="s6">!</span><span class="s1">comments[entryId]) comments[entryId] </span><span class="s6">=</span><span class="s1"> [];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>comments[entryId].</span><span class="s6">push</span><span class="s1">(newComment);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">const</span><span class="s1"> newCommentText </span><span class="s6">=</span><span class="s1"> { </span><span class="s6">...</span><span class="s1">appState.newCommentText };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">delete</span><span class="s1"> newCommentText[entryId];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s6">setState</span><span class="s1">({ comments, newCommentText });</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s7">catch</span><span class="s1"> (error) {</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">console</span><span class="s5">.</span><span class="s6">error</span><span class="s5">(</span><span class="s1">'Failed to add comment:'</span><span class="s5">, error);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s7">function</span><span class="s1"> </span><span class="s6">render</span><span class="s1">() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">let</span><span class="s1"> content </span><span class="s6">=</span><span class="s1"> </span><span class="s4">''</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">if</span><span class="s1"> (appState.view </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'login'</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span>content </span><span class="s6">=</span><span class="s5"> `</span><span class="s1">&lt;div class="min-h-screen flex items-center justify-center px-4"&gt;&lt;div class="glass-effect rounded-3xl p-8 w-full max-w-md fade-in"&gt;&lt;div class="text-center mb-8"&gt;&lt;h1 class="text-4xl font-bold mb-2"&gt;EchoDay&lt;/h1&gt;&lt;p class="text-white/60"&gt;View a shared journal&lt;/p&gt;&lt;/div&gt;&lt;div class="space-y-4 mb-6"&gt;&lt;div&gt;&lt;label class="block text-sm text-white/60 mb-2"&gt;Share Token&lt;/label&gt;&lt;input type="text" id="tokenInput" placeholder="Paste the share token here" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500"/&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-sm text-white/60 mb-2"&gt;Password&lt;/label&gt;&lt;input type="password" id="passwordInput" placeholder="Enter the password" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500"/&gt;&lt;/div&gt;&lt;div&gt;&lt;label class="block text-sm text-white/60 mb-2"&gt;Your Name&lt;/label&gt;&lt;input type="text" id="nameInput" placeholder="How should we identify your comments?" value="</span><span class="s5">${appState.userName}</span><span class="s1">" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500"/&gt;&lt;/div&gt;&lt;/div&gt;&lt;button onclick="handleLogin()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition"&gt;View Log&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;</span><span class="s5">`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s7">else</span><span class="s1"> </span><span class="s7">if</span><span class="s1"> (appState.view </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'loading'</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span>content </span><span class="s6">=</span><span class="s5"> `</span><span class="s1">&lt;div class="min-h-screen flex items-center justify-center"&gt;&lt;div class="text-center"&gt;&lt;div class="inline-block animate-spin mb-4"&gt;&lt;svg class="w-12 h-12 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"&gt;&lt;/circle&gt;&lt;path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;p class="text-white/60"&gt;Loading journal...&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</span><span class="s5">`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s7">else</span><span class="s1"> </span><span class="s7">if</span><span class="s1"> (appState.view </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'error'</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span>content </span><span class="s6">=</span><span class="s5"> `</span><span class="s1">&lt;div class="min-h-screen flex items-center justify-center px-4"&gt;&lt;div class="glass-effect rounded-3xl p-8 w-full max-w-md fade-in"&gt;&lt;div class="text-center mb-6"&gt;&lt;div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4"&gt;&lt;svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4v2m0-10a8 8 0 110 16 8 8 0 010-16z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/div&gt;&lt;h2 class="text-2xl font-bold mb-2"&gt;Error&lt;/h2&gt;&lt;p class="text-white/60"&gt;</span><span class="s5">${appState.error}</span><span class="s1">&lt;/p&gt;&lt;/div&gt;&lt;button onclick="setState({ view: 'login' })" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition"&gt;Try Again&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;</span><span class="s5">`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s7">else</span><span class="s1"> </span><span class="s7">if</span><span class="s1"> (appState.view </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'entries'</span><span class="s1">) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> entriesHTML </span><span class="s6">=</span><span class="s1"> appState.entries.</span><span class="s6">map</span><span class="s1">((entry) </span><span class="s6">=&gt;</span><span class="s1"> {</span><span class="s7">const</span><span class="s1"> comments </span><span class="s6">=</span><span class="s1"> appState.comments[entry.entry_id] </span><span class="s6">||</span><span class="s1"> [];</span><span class="s7">return</span><span class="s1"> `</span><span class="s4">&lt;div class="entry-card glass-effect rounded-3xl p-6 mb-4 fade-in"&gt;&lt;div class="flex items-start justify-between mb-4"&gt;&lt;div&gt;&lt;h3 class="text-white font-semibold text-lg"&gt;</span><span class="s1">${new Date(entry.added_at).toLocaleDateString('en-US', {weekday: 'long',month: 'short',day: 'numeric',})}</span><span class="s4">&lt;/h3&gt;&lt;p class="text-white/50 text-sm"&gt;</span><span class="s1">${new Date(entry.added_at).toLocaleTimeString()}</span><span class="s4">&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</span><span class="s1">${comments.length &gt; 0 ? `&lt;div class="border-t border-white/10 pt-4 mt-4"&gt;&lt;p class="text-white/40 text-xs uppercase tracking-wider mb-3"&gt;Comments (${comments.length})&lt;/p&gt;&lt;div class="space-y-3"&gt;${comments.map((c) =&gt; `&lt;div class="bg-white/5 rounded-xl p-3"&gt;&lt;div class="flex items-center mb-1"&gt;&lt;p class="text-amber-300 text-sm font-medium"&gt;${c.name}&lt;/p&gt;&lt;p class="text-white/30 text-xs ml-2"&gt;${new Date(c.created_at).toLocaleDateString()}&lt;/p&gt;&lt;/div&gt;&lt;p class="text-white/70 text-sm"&gt;${c.comment}&lt;/p&gt;&lt;/div&gt;`).join('')}&lt;/div&gt;&lt;/div&gt;` : ''}</span><span class="s4">&lt;div class="mt-4"&gt;&lt;textarea id="comment-</span><span class="s1">${entry.entry_id}</span><span class="s4">" placeholder="Leave a comment..." class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500 text-sm" rows="2"&gt;&lt;/textarea&gt;&lt;div class="flex justify-end mt-2"&gt;&lt;button onclick="handleAddComment('</span><span class="s1">${entry.entry_id}</span><span class="s4">')" class="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition"&gt;Comment&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</span><span class="s1">`;}).</span><span class="s6">join</span><span class="s1">(</span><span class="s4">''</span><span class="s1">);content </span><span class="s6">=</span><span class="s1"> `</span><span class="s4">&lt;div class="min-h-screen px-4 py-8"&gt;&lt;div class="max-w-2xl mx-auto"&gt;&lt;div class="mb-8 fade-in"&gt;&lt;h1 class="text-3xl font-bold mb-2"&gt;</span><span class="s1">${appState.log.name}</span><span class="s4">&lt;/h1&gt;&lt;p class="text-white/60"&gt;</span><span class="s1">${appState.entries.length}</span><span class="s4"> </span><span class="s1">${appState.entries.length === 1 ? 'entry' : 'entries'}</span><span class="s4">&lt;/p&gt;&lt;/div&gt;</span><span class="s1">${entriesHTML}</span><span class="s4">&lt;div class="mt-8 mb-8"&gt;&lt;button onclick="setState({ view: 'login', token: null, password: null })" class="w-full glass-effect text-white font-semibold py-3 rounded-xl hover:bg-white/20 transition"&gt;← Back&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</span><span class="s1">`;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>app.innerHTML </span><span class="s6">=</span><span class="s1"> content;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">if</span><span class="s1"> (appState.view </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'login'</span><span class="s1">) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> tokenInput </span><span class="s6">=</span><span class="s1"> </span><span class="s6">document</span><span class="s1">.</span><span class="s6">getElementById</span><span class="s1">(</span><span class="s4">'tokenInput'</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> passwordInput </span><span class="s6">=</span><span class="s1"> </span><span class="s6">document</span><span class="s1">.</span><span class="s6">getElementById</span><span class="s1">(</span><span class="s4">'passwordInput'</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> nameInput </span><span class="s6">=</span><span class="s1"> </span><span class="s6">document</span><span class="s1">.</span><span class="s6">getElementById</span><span class="s1">(</span><span class="s4">'nameInput'</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">if</span><span class="s1"> (tokenInput) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>tokenInput.value </span><span class="s6">=</span><span class="s1"> appState.token </span><span class="s6">||</span><span class="s1"> </span><span class="s4">''</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>tokenInput.</span><span class="s6">addEventListener</span><span class="s1">(</span><span class="s4">'keypress'</span><span class="s1">, (e) </span><span class="s6">=&gt;</span><span class="s1"> {</span><span class="s7">if</span><span class="s1"> (e.key </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'Enter'</span><span class="s1">) </span><span class="s6">handleLogin</span><span class="s1">();});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">if</span><span class="s1"> (passwordInput) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>passwordInput.value </span><span class="s6">=</span><span class="s1"> appState.password </span><span class="s6">||</span><span class="s1"> </span><span class="s4">''</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>passwordInput.</span><span class="s6">addEventListener</span><span class="s1">(</span><span class="s4">'keypress'</span><span class="s1">, (e) </span><span class="s6">=&gt;</span><span class="s1"> {</span><span class="s7">if</span><span class="s1"> (e.key </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'Enter'</span><span class="s1">) </span><span class="s6">handleLogin</span><span class="s1">();});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">if</span><span class="s1"> (nameInput) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>nameInput.</span><span class="s6">addEventListener</span><span class="s1">(</span><span class="s4">'change'</span><span class="s1">, (e) </span><span class="s6">=&gt;</span><span class="s1"> {</span><span class="s6">setState</span><span class="s1">({ </span><span class="s2">userName</span><span class="s6">:</span><span class="s1"> e.target.value });});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s7">else</span><span class="s1"> </span><span class="s7">if</span><span class="s1"> (appState.view </span><span class="s6">===</span><span class="s1"> </span><span class="s4">'entries'</span><span class="s1">) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>appState.entries.</span><span class="s6">forEach</span><span class="s1">((entry) </span><span class="s6">=&gt;</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">const</span><span class="s1"> textarea </span><span class="s6">=</span><span class="s1"> </span><span class="s6">document</span><span class="s1">.</span><span class="s6">getElementById</span><span class="s1">(`</span><span class="s4">comment-</span><span class="s1">${entry.entry_id}`);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s7">if</span><span class="s1"> (textarea) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>textarea.value </span><span class="s6">=</span><span class="s1"> appState.newCommentText[entry.entry_id] </span><span class="s6">||</span><span class="s1"> </span><span class="s4">''</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>textarea.</span><span class="s6">addEventListener</span><span class="s1">(</span><span class="s4">'input'</span><span class="s1">, (e) </span><span class="s6">=&gt;</span><span class="s1"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s7">const</span><span class="s1"> newCommentText </span><span class="s6">=</span><span class="s1"> { </span><span class="s6">...</span><span class="s1">appState.newCommentText };</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>newCommentText[entry.entry_id] </span><span class="s6">=</span><span class="s1"> e.target.value;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s6">setState</span><span class="s1">({ newCommentText });</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s7">function</span><span class="s5"> </span><span class="s1">handleLogin</span><span class="s5">() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s1"> tokenInput </span><span class="s6">=</span><span class="s1"> </span><span class="s6">document</span><span class="s1">.</span><span class="s6">getElementById</span><span class="s1">(</span><span class="s4">'tokenInput'</span><span class="s1">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s1"> passwordInput </span><span class="s6">=</span><span class="s1"> </span><span class="s6">document</span><span class="s1">.</span><span class="s6">getElementById</span><span class="s1">(</span><span class="s4">'passwordInput'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s5"> nameInput </span><span class="s1">=</span><span class="s5"> </span><span class="s1">document</span><span class="s5">.</span><span class="s1">getElementById</span><span class="s5">(</span><span class="s4">'nameInput'</span><span class="s5">);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s1"> token </span><span class="s6">=</span><span class="s1"> tokenInput</span><span class="s6">?.</span><span class="s1">value </span><span class="s6">||</span><span class="s1"> </span><span class="s4">''</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s1"> password </span><span class="s6">=</span><span class="s1"> passwordInput</span><span class="s6">?.</span><span class="s1">value </span><span class="s6">||</span><span class="s1"> </span><span class="s4">''</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s1"> userName </span><span class="s6">=</span><span class="s1"> nameInput</span><span class="s6">?.</span><span class="s1">value </span><span class="s6">||</span><span class="s1"> </span><span class="s4">'Guest'</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">if</span><span class="s1"> (</span><span class="s6">!</span><span class="s1">token </span><span class="s6">||</span><span class="s1"> </span><span class="s6">!</span><span class="s1">password) {</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s6">setState</span><span class="s5">({ </span><span class="s2">view</span><span class="s6">:</span><span class="s5"> </span><span class="s1">'error'</span><span class="s5">, </span><span class="s2">error</span><span class="s6">:</span><span class="s5"> </span><span class="s1">'Please enter both token and password'</span><span class="s5"> });</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">return</span><span class="s1">;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">setState</span><span class="s1">({ token, password, userName });</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">fetchSharedLog</span><span class="s5">();</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s7">function</span><span class="s1"> </span><span class="s6">handleAddComment</span><span class="s1">(entryId) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">const</span><span class="s1"> textarea </span><span class="s6">=</span><span class="s1"> </span><span class="s6">document</span><span class="s1">.</span><span class="s6">getElementById</span><span class="s1">(`</span><span class="s4">comment-</span><span class="s1">${entryId}`);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s7">if</span><span class="s1"> (textarea) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">setState</span><span class="s1">({</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s1">newCommentText</span><span class="s6">:</span><span class="s5"> {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s6">...</span><span class="s1">appState.newCommentText,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[entryId]</span><span class="s6">:</span><span class="s1"> textarea.value,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">addComment</span><span class="s1">(entryId);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s7">const</span><span class="s1"> params </span><span class="s6">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s3">URLSearchParams</span><span class="s1">(</span><span class="s6">window</span><span class="s1">.location.search);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s7">if</span><span class="s1"> (params.</span><span class="s6">get</span><span class="s1">(</span><span class="s4">'token'</span><span class="s1">)) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s6">setState</span><span class="s1">({</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">token</span><span class="s6">:</span><span class="s1"> params.</span><span class="s6">get</span><span class="s1">(</span><span class="s4">'token'</span><span class="s1">),</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">password</span><span class="s6">:</span><span class="s1"> params.</span><span class="s6">get</span><span class="s1">(</span><span class="s4">'password'</span><span class="s1">) </span><span class="s6">||</span><span class="s1"> </span><span class="s4">''</span><span class="s1">,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s6">render</span><span class="s1">();</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span>&lt;/</span><span class="s1">script</span><span class="s5">&gt;</span></p>
-<p class="p2"><span class="s5">&lt;/</span><span class="s1">body</span><span class="s5">&gt;</span></p>
-<p class="p2"><span class="s5">&lt;/</span><span class="s1">html</span><span class="s5">&gt;</span></p>
+  <div id="app"></div>
+  <script>
+    const SUPABASE_URL = 'https://xbjdemockbrdykexkjwu.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_axDBEvt-u1td7dCrP-4V-g_oHtfVtrb';
+    let appState = {
+      view: 'login',
+      token: null,
+      password: null,
+      log: null,
+      entries: [],
+      comments: {},
+      error: null,
+      newCommentText: {},
+      userName: 'Guest',
+    };
+    const app = document.getElementById('app');
+    function setState(newState) {
+      appState = { ...appState, ...newState };
+      render();
+    }
+    async function fetchSharedLog() {
+      if (!appState.token || !appState.password) return;
+      setState({ view: 'loading' });
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/shared_logs?token=eq.${appState.token}&select=*`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+        if (!response.ok) throw new Error('Log not found');
+        const data = await response.json();
+        if (!data.length) throw new Error('Log not found');
+        const log = data[0];
+        if (log.password !== appState.password) throw new Error('Invalid password');
+        const entriesRes = await fetch(`${SUPABASE_URL}/rest/v1/shared_log_entries?shared_log_id=eq.${log.id}&select=entry_id,added_at`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+        const entries = await entriesRes.json();
+        const commentsRes = await fetch(`${SUPABASE_URL}/rest/v1/shared_log_comments?shared_log_id=eq.${log.id}&select=*`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+        const comments = await commentsRes.json();
+        const commentsByEntry = {};
+        comments.forEach((c) => {
+          if (!commentsByEntry[c.entry_id]) commentsByEntry[c.entry_id] = [];
+          commentsByEntry[c.entry_id].push(c);
+        });
+        setState({ view: 'entries', log, entries, comments: commentsByEntry });
+      } catch (error) {
+        setState({ view: 'error', error: error.message });
+      }
+    }
+    async function addComment(entryId) {
+      const text = appState.newCommentText[entryId];
+      if (!text || !text.trim()) return;
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/shared_log_comments`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            shared_log_id: appState.log.id,
+            entry_id: entryId,
+            name: appState.userName,
+            comment: text.trim(),
+          }),
+        });
+        if (response.ok) {
+          const newComment = await response.json();
+          const comments = { ...appState.comments };
+          if (!comments[entryId]) comments[entryId] = [];
+          comments[entryId].push(newComment);
+          const newCommentText = { ...appState.newCommentText };
+          delete newCommentText[entryId];
+          setState({ comments, newCommentText });
+        }
+      } catch (error) {
+        console.error('Failed to add comment:', error);
+      }
+    }
+    function render() {
+      let content = '';
+      if (appState.view === 'login') {
+        content = `<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);"><div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:32px; width:100%; max-width:400px;"><div style="text-align:center; margin-bottom:32px;"><h1 style="color:white; font-size:36px; font-weight:bold; margin-bottom:8px;">EchoDay</h1><p style="color:rgba(255,255,255,0.6);">View a shared journal</p></div><div style="margin-bottom:24px;"><div style="margin-bottom:16px;"><label style="display:block; color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:8px;">Share Token</label><input type="text" id="tokenInput" placeholder="Paste the share token here" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box;"/></div><div style="margin-bottom:16px;"><label style="display:block; color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:8px;">Password</label><input type="password" id="passwordInput" placeholder="Enter the password" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box;"/></div><div><label style="display:block; color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:8px;">Your Name</label><input type="text" id="nameInput" placeholder="Your name" value="${appState.userName}" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box;"/></div></div><button onclick="handleLogin()" style="width:100%; background:#fbbf24; color:#1a1a2e; border:none; padding:12px 24px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:16px;">View Log</button></div></div>`;
+      } else if (appState.view === 'loading') {
+        content = `<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%); color:rgba(255,255,255,0.6);"><p>Loading journal...</p></div>`;
+      } else if (appState.view === 'error') {
+        content = `<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);"><div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:32px; width:100%; max-width:400px; text-align:center;"><h2 style="color:white; font-size:24px; font-weight:bold; margin-bottom:16px;">Error</h2><p style="color:rgba(255,255,255,0.6); margin-bottom:24px;">${appState.error}</p><button onclick="setState({ view: 'login' })" style="width:100%; background:#fbbf24; color:#1a1a2e; border:none; padding:12px 24px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:16px;">Try Again</button></div></div>`;
+      } else if (appState.view === 'entries') {
+        const entriesHTML = appState.entries.map((entry) => {
+          const comments = appState.comments[entry.entry_id] || [];
+          return `<div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:24px; margin-bottom:16px;"><h3 style="color:white; font-weight:600; font-size:18px; margin-bottom:8px;">${new Date(entry.added_at).toLocaleDateString('en-US', {weekday:'long', month:'short', day:'numeric'})}</h3><p style="color:rgba(255,255,255,0.5); font-size:14px;">${new Date(entry.added_at).toLocaleTimeString()}</p>${comments.length > 0 ? `<div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; margin-top:16px;"><p style="color:rgba(255,255,255,0.4); font-size:12px; text-transform:uppercase; margin-bottom:12px;">Comments (${comments.length})</p><div style="display:flex; flex-direction:column; gap:12px;">${comments.map((c) => `<div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:12px;"><div style="display:flex; align-items:center; margin-bottom:8px;"><p style="color:#fbbf24; font-size:14px; font-weight:500; margin-right:8px;">${c.name}</p><p style="color:rgba(255,255,255,0.3); font-size:12px;">${new Date(c.created_at).toLocaleDateString()}</p></div><p style="color:rgba(255,255,255,0.7); font-size:14px;">${c.comment}</p></div>`).join('')}</div></div>` : ''}<div style="margin-top:16px;"><textarea id="comment-${entry.entry_id}" placeholder="Leave a comment..." style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box; min-height:60px; font-family:inherit;"></textarea><div style="display:flex; justify-content:flex-end; margin-top:8px;"><button onclick="handleAddComment('${entry.entry_id}')" style="background:#fbbf24; color:#1a1a2e; border:none; padding:8px 16px; border-radius:8px; font-weight:600; cursor:pointer; font-size:14px;">Comment</button></div></div></div>`;
+        }).join('');
+        content = `<div style="min-height:100vh; padding:32px 16px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);"><div style="max-width:800px; margin:0 auto;"><h1 style="color:white; font-size:32px; font-weight:bold; margin-bottom:8px;">${appState.log.name}</h1><p style="color:rgba(255,255,255,0.6); margin-bottom:24px;">${appState.entries.length} ${appState.entries.length === 1 ? 'entry' : 'entries'}</p>${entriesHTML}<div style="margin-top:32px;"><button onclick="setState({ view: 'login', token: null, password: null })" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:white; padding:12px 24px; border-radius:12px; font-weight:600; cursor:pointer; font-size:16px;">← Back</button></div></div></div>`;
+      }
+      app.innerHTML = content;
+      if (appState.view === 'login') {
+        document.getElementById('tokenInput')?.addEventListener('keypress', (e) => {if (e.key === 'Enter') handleLogin();});
+        document.getElementById('passwordInput')?.addEventListener('keypress', (e) => {if (e.key === 'Enter') handleLogin();});
+        document.getElementById('nameInput')?.addEventListener('change', (e) => {setState({ userName: e.target.value });});
+      } else if (appState.view === 'entries') {
+        appState.entries.forEach((entry) => {
+          document.getElementById(`comment-${entry.entry_id}`)?.addEventListener('input', (e) => {
+            setState({ newCommentText: { ...appState.newCommentText, [entry.entry_id]: e.target.value } });
+          });
+        });
+      }
+    }
+    function handleLogin() {
+      const token = document.getElementById('tokenInput')?.value || '';
+      const password = document.getElementById('passwordInput')?.value || '';
+      const userName = document.getElementById('nameInput')?.value || 'Guest';
+      if (!token || !password) {
+        setState({ view: 'error', error: 'Please enter both token and password' });
+        return;
+      }
+      setState({ token, password, userName });
+      fetchSharedLog();
+    }
+    function handleAddComment(entryId) {
+      setState({ newCommentText: { ...appState.newCommentText, [entryId]: document.getElementById(`comment-${entryId}`)?.value } });
+      addComment(entryId);
+    }
+    render();
+  </script>
 </body>
 </html>
