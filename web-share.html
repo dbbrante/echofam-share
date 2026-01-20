@@ -397,7 +397,8 @@
 
         if (nameInput) {
           nameInput.addEventListener('change', (e) => {
-            setState({ userName: e.target.value });
+            // Just update state directly, don't call setState
+            appState.userName = e.target.value;
           });
         }
       } else if (appState.view === 'entries') {
