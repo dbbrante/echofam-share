@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EchoDay - Shared Journal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    const SUPABASE_URL = 'https://xbjdemockbrdykexkjwu.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_axDBEvt-u1td7dCrP-4V-g_oHtfVtrb';
+    let appState = {
+      view: 'login',
+      token: null,
+      password: null,
+      log: null,
+      entries: [],
+      comments: {},
+      error: null,
+      newCommentText: {},
+      userName: 'Guest',
+    };
+    const app = document.getElementById('app');
+    function setState(newState) {
+      appState = { ...appState, ...newState };
+      render();
+    }
+    async function fetchSharedLog() {
+      if (!appState.token || !appState.password) return;
+      setState({ view: 'loading' });
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/shared_logs?token=eq.${appState.token}&select=*`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+        if (!response.ok) throw new Error('Log not found');
+        const data = await response.json();
+        if (!data.length) throw new Error('Log not found');
+        const log = data[0];
+        if (log.password !== appState.password) throw new Error('Invalid password');
+        const entriesRes = await fetch(`${SUPABASE_URL}/rest/v1/shared_log_entries?shared_log_id=eq.${log.id}&select=entry_id,added_at`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+        const entries = await entriesRes.json();
+        const commentsRes = await fetch(`${SUPABASE_URL}/rest/v1/shared_log_comments?shared_log_id=eq.${log.id}&select=*`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+        const comments = await commentsRes.json();
+        const commentsByEntry = {};
+        comments.forEach((c) => {
+          if (!commentsByEntry[c.entry_id]) commentsByEntry[c.entry_id] = [];
+          commentsByEntry[c.entry_id].push(c);
+        });
+        setState({ view: 'entries', log, entries, comments: commentsByEntry });
+      } catch (error) {
+        setState({ view: 'error', error: error.message });
+      }
+    }
+    async function addComment(entryId) {
+      const text = appState.newCommentText[entryId];
+      if (!text || !text.trim()) return;
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/shared_log_comments`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            shared_log_id: appState.log.id,
+            entry_id: entryId,
+            name: appState.userName,
+            comment: text.trim(),
+          }),
+        });
+        if (response.ok) {
+          const newComment = await response.json();
+          const comments = { ...appState.comments };
+          if (!comments[entryId]) comments[entryId] = [];
+          comments[entryId].push(newComment);
+          const newCommentText = { ...appState.newCommentText };
+          delete newCommentText[entryId];
+          setState({ comments, newCommentText });
+        }
+      } catch (error) {
+        console.error('Failed to add comment:', error);
+      }
+    }
+    function render() {
+      let content = '';
+      if (appState.view === 'login') {
+        content = `<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);"><div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:32px; width:100%; max-width:400px;"><div style="text-align:center; margin-bottom:32px;"><h1 style="color:white; font-size:36px; font-weight:bold; margin-bottom:8px;">EchoDay</h1><p style="color:rgba(255,255,255,0.6);">View a shared journal</p></div><div style="margin-bottom:24px;"><div style="margin-bottom:16px;"><label style="display:block; color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:8px;">Share Token</label><input type="text" id="tokenInput" placeholder="Paste the share token here" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box;"/></div><div style="margin-bottom:16px;"><label style="display:block; color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:8px;">Password</label><input type="password" id="passwordInput" placeholder="Enter the password" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box;"/></div><div><label style="display:block; color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:8px;">Your Name</label><input type="text" id="nameInput" placeholder="Your name" value="${appState.userName}" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box;"/></div></div><button onclick="handleLogin()" style="width:100%; background:#fbbf24; color:#1a1a2e; border:none; padding:12px 24px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:16px;">View Log</button></div></div>`;
+      } else if (appState.view === 'loading') {
+        content = `<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%); color:rgba(255,255,255,0.6);"><p>Loading journal...</p></div>`;
+      } else if (appState.view === 'error') {
+        content = `<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);"><div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:32px; width:100%; max-width:400px; text-align:center;"><h2 style="color:white; font-size:24px; font-weight:bold; margin-bottom:16px;">Error</h2><p style="color:rgba(255,255,255,0.6); margin-bottom:24px;">${appState.error}</p><button onclick="setState({ view: 'login' })" style="width:100%; background:#fbbf24; color:#1a1a2e; border:none; padding:12px 24px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:16px;">Try Again</button></div></div>`;
+      } else if (appState.view === 'entries') {
+        const entriesHTML = appState.entries.map((entry) => {
+          const comments = appState.comments[entry.entry_id] || [];
+          return `<div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:24px; padding:24px; margin-bottom:16px;"><h3 style="color:white; font-weight:600; font-size:18px; margin-bottom:8px;">${new Date(entry.added_at).toLocaleDateString('en-US', {weekday:'long', month:'short', day:'numeric'})}</h3><p style="color:rgba(255,255,255,0.5); font-size:14px;">${new Date(entry.added_at).toLocaleTimeString()}</p>${comments.length > 0 ? `<div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; margin-top:16px;"><p style="color:rgba(255,255,255,0.4); font-size:12px; text-transform:uppercase; margin-bottom:12px;">Comments (${comments.length})</p><div style="display:flex; flex-direction:column; gap:12px;">${comments.map((c) => `<div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:12px;"><div style="display:flex; align-items:center; margin-bottom:8px;"><p style="color:#fbbf24; font-size:14px; font-weight:500; margin-right:8px;">${c.name}</p><p style="color:rgba(255,255,255,0.3); font-size:12px;">${new Date(c.created_at).toLocaleDateString()}</p></div><p style="color:rgba(255,255,255,0.7); font-size:14px;">${c.comment}</p></div>`).join('')}</div></div>` : ''}<div style="margin-top:16px;"><textarea id="comment-${entry.entry_id}" placeholder="Leave a comment..." style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:12px 16px; color:white; font-size:14px; box-sizing:border-box; min-height:60px; font-family:inherit;"></textarea><div style="display:flex; justify-content:flex-end; margin-top:8px;"><button onclick="handleAddComment('${entry.entry_id}')" style="background:#fbbf24; color:#1a1a2e; border:none; padding:8px 16px; border-radius:8px; font-weight:600; cursor:pointer; font-size:14px;">Comment</button></div></div></div>`;
+        }).join('');
+        content = `<div style="min-height:100vh; padding:32px 16px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);"><div style="max-width:800px; margin:0 auto;"><h1 style="color:white; font-size:32px; font-weight:bold; margin-bottom:8px;">${appState.log.name}</h1><p style="color:rgba(255,255,255,0.6); margin-bottom:24px;">${appState.entries.length} ${appState.entries.length === 1 ? 'entry' : 'entries'}</p>${entriesHTML}<div style="margin-top:32px;"><button onclick="setState({ view: 'login', token: null, password: null })" style="width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:white; padding:12px 24px; border-radius:12px; font-weight:600; cursor:pointer; font-size:16px;">← Back</button></div></div></div>`;
+      }
+      app.innerHTML = content;
+      if (appState.view === 'login') {
+        document.getElementById('tokenInput')?.addEventListener('keypress', (e) => {if (e.key === 'Enter') handleLogin();});
+        document.getElementById('passwordInput')?.addEventListener('keypress', (e) => {if (e.key === 'Enter') handleLogin();});
+        document.getElementById('nameInput')?.addEventListener('change', (e) => {setState({ userName: e.target.value });});
+      } else if (appState.view === 'entries') {
+        appState.entries.forEach((entry) => {
+          document.getElementById(`comment-${entry.entry_id}`)?.addEventListener('input', (e) => {
+            setState({ newCommentText: { ...appState.newCommentText, [entry.entry_id]: e.target.value } });
+          });
+        });
+      }
+    }
+    function handleLogin() {
+      const token = document.getElementById('tokenInput')?.value || '';
+      const password = document.getElementById('passwordInput')?.value || '';
+      const userName = document.getElementById('nameInput')?.value || 'Guest';
+      if (!token || !password) {
+        setState({ view: 'error', error: 'Please enter both token and password' });
+        return;
+      }
+      setState({ token, password, userName });
+      fetchSharedLog();
+    }
+    function handleAddComment(entryId) {
+      setState({ newCommentText: { ...appState.newCommentText, [entryId]: document.getElementById(`comment-${entryId}`)?.value } });
+      addComment(entryId);
+    }
+    render();
+  </script>
+</body>
+</html>
