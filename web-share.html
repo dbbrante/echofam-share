@@ -207,7 +207,8 @@
         });
 
         if (response.ok) {
-          // Refresh the entire log to show new comment immediately
+          // Clear the textarea and refresh
+          appState.newCommentText[entryId] = '';
           await fetchSharedLog();
         } else {
           console.error('Failed to add comment:', response.status);
@@ -230,16 +231,6 @@
               </div>
 
               <div class="space-y-4 mb-6">
-                <div>
-                  <label class="block text-sm text-white/60 mb-2">Share Token</label>
-                  <input
-                    type="text"
-                    id="tokenInput"
-                    placeholder="Paste the share token here"
-                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500"
-                  />
-                </div>
-
                 <div>
                   <label class="block text-sm text-white/60 mb-2">Password</label>
                   <input
@@ -395,16 +386,8 @@
 
       // Attach event listeners after rendering
       if (appState.view === 'login') {
-        const tokenInput = document.getElementById('tokenInput');
         const passwordInput = document.getElementById('passwordInput');
         const nameInput = document.getElementById('nameInput');
-
-        if (tokenInput) {
-          tokenInput.value = appState.token || '';
-          tokenInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleLogin();
-          });
-        }
 
         if (passwordInput) {
           passwordInput.value = appState.password || '';
@@ -425,9 +408,8 @@
           if (textarea) {
             textarea.value = appState.newCommentText[entryId] || '';
             textarea.addEventListener('input', (e) => {
-              const newCommentText = { ...appState.newCommentText };
-              newCommentText[entryId] = e.target.value;
-              setState({ newCommentText });
+              // Just update the state directly, don't call setState
+              appState.newCommentText[entryId] = e.target.value;
             });
           }
         });
@@ -435,23 +417,20 @@
     }
 
     async function handleLogin() {
-      const tokenInput = document.getElementById('tokenInput');
       const passwordInput = document.getElementById('passwordInput');
       const nameInput = document.getElementById('nameInput');
 
-      const token = tokenInput?.value || '';
       const password = passwordInput?.value || '';
       const userName = nameInput?.value || 'Guest';
 
-      console.log('Login attempt with token:', token);
+      console.log('Login attempt with token:', appState.token);
 
-      if (!token || !password) {
-        setState({ view: 'error', error: 'Please enter both token and password' });
+      if (!password) {
+        setState({ view: 'error', error: 'Please enter password' });
         return;
       }
 
-      // Update appState directly - don't use setState to avoid async issues
-      appState.token = token;
+      // Update appState directly
       appState.password = password;
       appState.userName = userName;
 
