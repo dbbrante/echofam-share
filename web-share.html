@@ -15,12 +15,27 @@
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
     }
 
     .glass-effect {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .entry-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .entry-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .fade-in {
@@ -36,15 +51,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    .entry-card {
-      transition: all 0.2s ease;
-    }
-
-    .entry-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(251, 191, 36, 0.1);
     }
   </style>
 </head>
@@ -78,7 +84,6 @@
       if (!appState.token || !appState.password) return;
 
       setState({ view: 'loading' });
-      console.log('Fetching log with token:', appState.token);
 
       try {
         const logRes = await fetch(`${SUPABASE_URL}/rest/v1/shared_logs?token=eq.${appState.token}&select=*`, {
@@ -89,24 +94,20 @@
         });
 
         if (!logRes.ok) {
-          throw new Error(`Failed to fetch log: ${logRes.status}`);
+          throw new Error(`Failed to fetch log`);
         }
 
         const data = await logRes.json();
-        console.log('Log data:', data);
 
         if (!data.length) {
-          throw new Error('Log not found - token not recognized');
+          throw new Error('Log not found');
         }
 
         const log = data[0];
-        console.log('Log found:', log.name);
 
         if (log.password !== appState.password) {
-          throw new Error('Invalid password');
+          throw new Error('Incorrect password');
         }
-
-        console.log('Password verified, fetching entries...');
 
         const entriesRes = await fetch(
           `${SUPABASE_URL}/rest/v1/shared_log_entries?shared_log_id=eq.${log.id}&select=entry_id,added_at&order=added_at.desc`,
@@ -119,7 +120,6 @@
         );
 
         const sharedLogEntries = await entriesRes.json();
-        console.log('Shared log entries:', sharedLogEntries);
 
         let entries = [];
         for (const sle of sharedLogEntries) {
@@ -146,10 +146,8 @@
           }
         }
 
-        console.log('Final entries with data:', entries);
-
         const commentsRes = await fetch(
-          `${SUPABASE_URL}/rest/v1/shared_log_comments?shared_log_id=eq.${log.id}&select=*`,
+          `${SUPABASE_URL}/rest/v1/shared_log_comments?shared_log_id=eq.${log.id}&select=*&order=created_at.desc`,
           {
             headers: {
               'apikey': SUPABASE_ANON_KEY,
@@ -165,8 +163,6 @@
           commentsByEntry[c.entry_id].push(c);
         });
 
-        console.log('Successfully loaded log with', entries.length, 'entries');
-
         setState({
           view: 'entries',
           log,
@@ -174,7 +170,6 @@
           comments: commentsByEntry,
         });
       } catch (error) {
-        console.error('Error loading log:', error);
         setState({ view: 'error', error: error.message });
       }
     }
@@ -194,7 +189,7 @@
           body: JSON.stringify({
             shared_log_id: appState.log.id,
             entry_id: entryId,
-            name: appState.userName,
+            name: appState.userName || 'Guest',
             comment: text.trim(),
           }),
         });
@@ -203,15 +198,12 @@
           const newComment = await response.json();
           const comments = { ...appState.comments };
           if (!comments[entryId]) comments[entryId] = [];
-          comments[entryId].push(newComment);
+          comments[entryId].unshift(newComment);
 
           const newCommentText = { ...appState.newCommentText };
           delete newCommentText[entryId];
 
           setState({ comments, newCommentText });
-          console.log('Comment added successfully');
-        } else {
-          console.error('Failed to add comment:', response.status);
         }
       } catch (error) {
         console.error('Failed to add comment:', error);
@@ -224,51 +216,47 @@
       if (appState.view === 'login') {
         content = `
           <div class="min-h-screen flex items-center justify-center px-4">
-            <div class="glass-effect rounded-3xl p-8 w-full max-w-md fade-in">
+            <div class="glass-effect rounded-3xl p-8 w-full max-w-sm fade-in">
               <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold mb-2">EchoDay</h1>
-                <p class="text-white/60">View a shared journal</p>
+                <h1 class="text-5xl font-bold mb-2">EchoDay</h1>
+                <p class="text-white/60 text-base">View a shared journal</p>
               </div>
 
               <div class="space-y-4 mb-6">
                 <div>
-                  <label class="block text-sm text-white/60 mb-2">Share Token</label>
-                  <input
-                    type="text"
-                    id="tokenInput"
-                    placeholder="Paste the share token here"
-                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500"
-                  />
-                </div>
-
-                <div>
-                  <label class="block text-sm text-white/60 mb-2">Password</label>
+                  <label class="block text-sm text-white/70 mb-3 font-medium">Password</label>
                   <input
                     type="password"
                     id="passwordInput"
-                    placeholder="Enter the password"
-                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500"
+                    placeholder="Enter password"
+                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 transition"
                   />
                 </div>
 
                 <div>
-                  <label class="block text-sm text-white/60 mb-2">Your Name</label>
+                  <label class="block text-sm text-white/70 mb-3 font-medium">Your name (for comments)</label>
                   <input
                     type="text"
                     id="nameInput"
-                    placeholder="How should we identify your comments?"
-                    value="${appState.userName}"
-                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500"
+                    placeholder="Your name"
+                    value="Guest"
+                    class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 transition"
                   />
                 </div>
               </div>
 
               <button
                 onclick="handleLogin()"
-                class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition"
+                class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition active:scale-95"
               >
-                View Log
+                View Journal
               </button>
+
+              ${appState.error ? `
+                <div class="mt-4 bg-red-500/20 border border-red-500/30 rounded-xl p-3">
+                  <p class="text-red-200 text-sm">${appState.error}</p>
+                </div>
+              ` : ''}
             </div>
           </div>
         `;
@@ -282,30 +270,7 @@
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
               </div>
-              <p class="text-white/60">Loading journal...</p>
-            </div>
-          </div>
-        `;
-      } else if (appState.view === 'error') {
-        content = `
-          <div class="min-h-screen flex items-center justify-center px-4">
-            <div class="glass-effect rounded-3xl p-8 w-full max-w-md fade-in">
-              <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4v2m0-10a8 8 0 110 16 8 8 0 010-16z"></path>
-                  </svg>
-                </div>
-                <h2 class="text-2xl font-bold mb-2">Error</h2>
-                <p class="text-white/60">${appState.error}</p>
-              </div>
-
-              <button
-                onclick="setState({ view: 'login' })"
-                class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition"
-              >
-                Try Again
-              </button>
+              <p class="text-white/60">Loading...</p>
             </div>
           </div>
         `;
@@ -313,27 +278,25 @@
         const entriesHTML = appState.entries && appState.entries.length > 0
           ? appState.entries
           .map((entry) => {
-            console.log('Rendering entry:', entry);
             const comments = appState.comments[entry.entry_id] || [];
             const date = new Date(entry.date || entry.added_at);
+            const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
             return `
-              <div class="entry-card glass-effect rounded-3xl p-6 mb-4 fade-in">
-                <div class="mb-4">
-                  <h3 class="text-white font-semibold text-lg mb-1">
-                    ${date.toLocaleDateString('en-US', {
-                      weekday: 'long',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                    ${entry.mood_emoji ? ` ${entry.mood_emoji}` : ''}
-                  </h3>
-                  <p class="text-white/50 text-sm">${date.toLocaleTimeString()}</p>
+              <div class="entry-card fade-in">
+                <div class="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 class="text-white font-semibold text-base mb-1">
+                      ${dateStr} ${entry.mood_emoji ? entry.mood_emoji : ''}
+                    </h3>
+                    <p class="text-white/50 text-sm">${timeStr}</p>
+                  </div>
                 </div>
 
-                ${entry.summary ? `<p class="text-white text-sm mb-3"><strong>Summary:</strong> ${entry.summary}</p>` : ''}
-                ${entry.transcript ? `<p class="text-white/80 text-sm mb-3"><strong>Transcript:</strong> "${entry.transcript}"</p>` : ''}
-                ${entry.ai_response ? `<p class="text-amber-200 text-sm mb-3"><strong>Echo:</strong> ${entry.ai_response}</p>` : ''}
+                ${entry.summary ? `<p class="text-white/90 text-sm mb-2">${entry.summary}</p>` : ''}
+                ${entry.transcript ? `<p class="text-white/60 text-sm italic mb-3">"${entry.transcript}"</p>` : ''}
+                ${entry.ai_response ? `<p class="text-amber-200/90 text-sm mb-3">${entry.ai_response}</p>` : ''}
 
                 ${
                   comments.length > 0
@@ -341,9 +304,10 @@
                         <p class="text-white/40 text-xs uppercase tracking-wider mb-3">Comments (${comments.length})</p>
                         <div class="space-y-3">
                           ${comments.map((c) => `
-                            <div class="bg-white/5 rounded-xl p-3">
+                            <div class="bg-white/5 rounded-lg p-3">
                               <p class="text-amber-300 text-sm font-medium">${c.name}</p>
-                              <p class="text-white/70 text-sm">${c.comment}</p>
+                              <p class="text-white/70 text-sm mt-1">${c.comment}</p>
+                              <p class="text-white/30 text-xs mt-1">${new Date(c.created_at).toLocaleDateString()}</p>
                             </div>
                           `).join('')}
                         </div>
@@ -352,39 +316,33 @@
                 }
 
                 <div class="mt-4">
-                  <textarea id="comment-${entry.entry_id}" placeholder="Leave a comment..." class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-amber-500 text-sm" rows="2"></textarea>
+                  <textarea id="comment-${entry.entry_id}" placeholder="Leave a comment..." class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/40 focus:outline-none focus:border-amber-500 transition text-sm" rows="2"></textarea>
                   <div class="flex justify-end mt-2">
-                    <button onclick="handleAddComment('${entry.entry_id}')" class="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">Comment</button>
+                    <button onclick="handleAddComment('${entry.entry_id}')" class="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition active:scale-95">Post</button>
                   </div>
                 </div>
               </div>
             `;
           })
           .join('')
-          : '<div class="text-white/60 text-center py-8">No entries in this log yet.</div>';
+          : '<div class="text-center py-16"><p class="text-white/40">No entries yet</p></div>';
 
         content = `
-          <div class="min-h-screen px-4 py-8">
+          <div class="min-h-screen px-4 py-6 pb-12">
             <div class="max-w-2xl mx-auto">
               <div class="mb-8 fade-in">
-                <h1 class="text-3xl font-bold mb-2">${appState.log.name}</h1>
-                <p class="text-white/60">${appState.entries.length} ${appState.entries.length === 1 ? 'entry' : 'entries'}</p>
+                <h1 class="text-4xl font-bold text-white mb-1">${appState.log.name}</h1>
+                <p class="text-white/50 text-sm">${appState.entries.length} ${appState.entries.length === 1 ? 'entry' : 'entries'}</p>
               </div>
 
               ${entriesHTML}
 
-              <div class="mt-8 mb-8">
+              <div class="mt-8">
                 <button
-                  onclick="location.reload()"
-                  class="w-full glass-effect text-white font-semibold py-3 rounded-xl hover:bg-white/20 transition mb-2"
+                  onclick="setState({ view: 'login', token: null, password: null, error: null })"
+                  class="w-full glass-effect text-white font-semibold py-3 rounded-xl hover:bg-white/15 transition active:scale-95"
                 >
-                  🔄 Refresh
-                </button>
-                <button
-                  onclick="setState({ view: 'login', token: null, password: null })"
-                  class="w-full glass-effect text-white font-semibold py-3 rounded-xl hover:bg-white/20 transition"
-                >
-                  ← Back
+                  ← Exit
                 </button>
               </div>
             </div>
@@ -395,16 +353,8 @@
       app.innerHTML = content;
 
       if (appState.view === 'login') {
-        const tokenInput = document.getElementById('tokenInput');
         const passwordInput = document.getElementById('passwordInput');
         const nameInput = document.getElementById('nameInput');
-
-        if (tokenInput) {
-          tokenInput.value = appState.token || '';
-          tokenInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleLogin();
-          });
-        }
 
         if (passwordInput) {
           passwordInput.value = appState.password || '';
@@ -414,8 +364,9 @@
         }
 
         if (nameInput) {
+          nameInput.value = appState.userName || 'Guest';
           nameInput.addEventListener('change', (e) => {
-            setState({ userName: e.target.value });
+            appState.userName = e.target.value || 'Guest';
           });
         }
       } else if (appState.view === 'entries') {
@@ -427,7 +378,7 @@
             textarea.addEventListener('input', (e) => {
               const newCommentText = { ...appState.newCommentText };
               newCommentText[entryId] = e.target.value;
-              setState({ newCommentText });
+              appState.newCommentText = newCommentText;
             });
           }
         });
@@ -435,24 +386,25 @@
     }
 
     async function handleLogin() {
-      const tokenInput = document.getElementById('tokenInput');
       const passwordInput = document.getElementById('passwordInput');
       const nameInput = document.getElementById('nameInput');
 
-      const token = tokenInput?.value || '';
       const password = passwordInput?.value || '';
       const userName = nameInput?.value || 'Guest';
 
-      console.log('Login attempt with token:', token);
-
-      if (!token || !password) {
-        setState({ view: 'error', error: 'Please enter both token and password' });
+      if (!password) {
+        setState({ error: 'Please enter password' });
         return;
       }
 
-      appState.token = token;
+      if (!appState.token) {
+        setState({ error: 'No journal link provided' });
+        return;
+      }
+
       appState.password = password;
       appState.userName = userName;
+      appState.error = null;
 
       appState.view = 'loading';
       render();
@@ -463,27 +415,28 @@
     function handleAddComment(entryId) {
       const textarea = document.getElementById(`comment-${entryId}`);
       if (textarea) {
-        setState({
-          newCommentText: {
-            ...appState.newCommentText,
-            [entryId]: textarea.value,
-          },
-        });
+        appState.newCommentText[entryId] = textarea.value;
         addComment(entryId);
       }
     }
 
     const params = new URLSearchParams(window.location.search);
-    if (params.get('token')) {
-      appState.token = params.get('token');
-      appState.password = params.get('password') || '';
-      console.log('Loading from URL params...');
-      fetchSharedLog().then(() => {
-        console.log('Auto-loaded from URL');
-      });
-    }
+    const token = params.get('token');
 
-    render();
+    if (!token) {
+      appState.view = 'error';
+      appState.error = 'No journal link provided. Please ask for a shared link.';
+      render();
+    } else {
+      appState.token = token;
+      appState.password = params.get('password') || '';
+      
+      if (appState.password) {
+        fetchSharedLog();
+      } else {
+        render();
+      }
+    }
   </script>
 </body>
 </html>
